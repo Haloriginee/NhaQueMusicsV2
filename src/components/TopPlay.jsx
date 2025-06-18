@@ -14,7 +14,7 @@ const TopChartCard = ({ song, index, isPlaying, activeSong, handlePauseClick, ha
     <h3 className="font-bold text-base text-white mr-3">
       {index + 1}.
     </h3>
-    <div className="flex-1 flex flex-row jsutify-between items-center">
+    <div className="flex-1 flex flex-row justify-between items-center">
       <img
         src={song?.images?.coverart}
         alt="song title"
@@ -58,7 +58,7 @@ const TopPlay = () => {
   const divRef = useRef(null);
 
   useEffect(() => {
-    divRef.current.scrollIntoView({ behavior: 'smooth'});
+    divRef.current.scrollIntoView({ behavior: 'smooth' });
   });
 
   const topPlays = data?.slice(0, 5);
@@ -91,7 +91,7 @@ const TopPlay = () => {
           </Link>
         </div>
         <div className="mt-4 flex flex-col gap-1">
-          {topPlays?.map((song, index) => (
+          {topPlays?.slice(0, 5).map((song, index) => (
             <TopChartCard
               song={song}
               index={index}
@@ -101,7 +101,7 @@ const TopPlay = () => {
               handlePauseClick={handlePauseClick}
               handlePlayClick={() => handlePlayClick(song, index)}
             />
-          ))};
+          ))}
         </div>
       </div>
       <div className="w-full flex flex-col mt-8">
@@ -126,7 +126,7 @@ const TopPlay = () => {
           modules={[FreeMode]}
           className="mt-4"
         >
-          {topPlays?.map((song, index) => (
+          {topPlays?.map((song) => (
             <SwiperSlide
               key={song?.key}
               style={{ width: '25%', height: 'auto' }}
